@@ -1,11 +1,13 @@
-FROM python:3.9-slim
+FROM python:3.10.12-slim
 
 WORKDIR /app
 
 COPY . .
 
-RUN pip install --no-cache-dir -r requirement.txt
+RUN pip install --upgrade pip
+
+RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5000
 
-CMD ["python", "app.py"]
+CMD ["gunicorn","--config", "gunicorn_config.py", "app:app"]
