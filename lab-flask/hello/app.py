@@ -7,7 +7,7 @@ from api.commands import setup_commands
 from api.models import db
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///hello.sqlit'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///hello.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 MIGRATE = Migrate(app, db, compare_type=True)
