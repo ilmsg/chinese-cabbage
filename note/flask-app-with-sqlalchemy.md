@@ -1,12 +1,13 @@
-
 **flask กับ sqlalchemy**
 
 เวลาเราใช้ flask กับ sqlalchemy จะต้องใส่ค่า config `SQLALCHEMY_DATABASE_URI` ที่ app ที่เอาไว้ต่อกับ database ด้วย
 
-    app = Flask(__name__)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
+```python
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
 
-    db = SQLAlchemy(app)
+db = SQLAlchemy(app)
+```
 
 ทีนี้ตัว db ของเราก็พร้อมใช้งานแล้ว
 
@@ -23,11 +24,13 @@
 
 ไพล์ `app.py`
 
-    from flask import Flask
-    from .models import db
+```python
+from flask import Flask
+from .models import db
 
-    app = Flask(__name__)
-    db.init_app(app)
+app = Flask(__name__)
+db.init_app(app)
+```
 ---
 
 **flask กับ config**
@@ -37,7 +40,7 @@
 ไพล์ `app.py`
 
     from flask import Flask
-
+    
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
 
@@ -49,15 +52,19 @@
 
 ไพล์ `config.py` จะถูกเรียกใน `app.py`
 
-    import os
+```python
+import os
 
-    class Config:
-        SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
+class Config:
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
+```
 
 ไพล์ `app.py`
 
-    from flask import Flask
-    from .config import Config
+```python
+from flask import Flask
+from .config import Config
 
-    app = Flask(__name__)
-    app.config.from_object(Config)
+app = Flask(__name__)
+app.config.from_object(Config)
+```
